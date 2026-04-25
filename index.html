@@ -159,32 +159,64 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',sans-se
 </div>
 <script>
 /* ================================================================
-   2차원 투자성향 분석 시스템 v2.0
+   2차원 투자성향 분석 시스템 v2.1
    설계 근거:
    · Kitces(2012) Risk Tolerance vs Risk Capacity 2차원 분리 모델
    · FinaMetrica(호주) 행동재무학 기반 성향 측정 방식
    · 금융투자협회 표준투자권유준칙 5등급 체계 (공격투자형~안정형)
    · 자본시장법 제46조 적합성 원칙
+   · 미래에셋·한국투자증권 현행 설문 비교 보완 (v2.1)
    핵심: B등급 > A등급+1 시 A등급으로 하향 (Kitces 원칙)
+   A축 변경사항 (v2.1):
+   · 소득 안정성 + 소득 잔여 기간 분리 측정
+   · 노동소득 단절 후 연금 대체율 신규 추가
+   · 현재 투자성 자산 비중 신규 추가
+   · 투자 가능 기간: 연금계좌 수령 시점 기준 명시
+   · 총 A축 10문항 (기존 7문항 → 10문항), B축 7문항 유지
 ================================================================ */
 
 const sectionA = {
   key:'A', eyebrow:'A축 · 01 / 02',
   heading:'위험감수능력 (Risk Capacity)',
-  desc:'객관적인 재무 상태를 측정합니다. 심리가 아닌 숫자와 사실로 답하세요. 소득 안정성, 자산 구조, 유동성을 바탕으로 실제 손실을 견딜 수 있는 능력을 평가합니다.',
+  desc:'객관적인 재무 상태를 측정합니다. 심리가 아닌 숫자와 사실로 답하세요. 소득의 안정성과 지속성, 자산 구조, 유동성을 종합적으로 평가합니다.',
   questions:[
-    {text:'현재 소득원의 안정성과 지속 가능성은?',weight:20,
-     hints:['무직·일용직·폐업 위기','프리랜서·계약직·불규칙','중소기업 정규직','대기업·전문직 정규직','공무원·종신직·다수 소득원']},
-    {text:'이 투자 자금을 묶어둘 수 있는 기간은?',weight:20,
+    /* ── 소득 안정성 ── */
+    {text:'현재 주요 소득원의 안정성과 수준은?',weight:15,
+     hints:['무직·일용직·폐업 위기','프리랜서·계약직·불규칙 소득','중소기업 정규직','대기업 정규직','공무원·종신직·전문직·다수의 안정적 소득원']},
+
+    /* ── 소득 지속 기간 (신규) ── */
+    {text:'현재 주요 노동소득이 앞으로 얼마나 지속될 것으로 예상하나요?',weight:15,
+     hints:['이미 은퇴 또는 노동소득 없음','1~3년 내 은퇴·소득 단절 예정','3~7년 내 은퇴·직업 전환 예상','10년 이상 유지 예상','20년 이상 유지 또는 소득 증가 예상']},
+
+    /* ── 노동소득 단절 후 소득 대체율 (신규) ── */
+    {text:'노동소득이 끊기더라도 매월 들어올 것으로 예상되는 돈은 월 생활비의 몇 %를 충당할 것 같나요?',weight:10,
+     hints:['10% 미만 — 거의 없거나 전혀 예측 불가','10~30% — 일부만 충당','30~60% — 절반 수준','60~90% — 대부분 충당 가능','90% 이상 — 생활비 전액 또는 초과']},
+
+    /* ── 투자 가능 기간 ── */
+    {text:'이 투자 자금을 묶어둘 수 있는 기간은?',weight:15,
      hints:['1년 미만','1~3년','3~5년','5~10년','10년 이상']},
-    {text:'전체 자산 중 순자산 비중과 주요 부채의 성격은?',weight:15,
+
+    /* ── 순자산 & 부채 성격 ── */
+    {text:'전체 자산 중 순자산 비중과 주요 부채의 성격은?',weight:10,
      hints:['순자산 20% 미만 (고금리 신용부채)','순자산 20~40% (신용·카드론)','순자산 40~60% (주담대 위주)','순자산 60~80% (소액 부채)','순자산 80% 이상 (부채 거의 없음)']},
-    {text:'비상금은 월 생활비 기준 몇 개월분인가요?',weight:15,
+
+    /* ── 현재 투자성 자산 비중 (신규) ── */
+    {text:'현재 보유한 총 금융자산 중 주식·펀드·ETF·ELS 등 투자성 자산의 비중은?',weight:10,
+     hints:['80% 이상 (대부분 투자성 자산)','60~80%','40~60%','20~40%','20% 미만 또는 없음 (예적금·보험 위주)']},
+
+    /* ── 비상금 ── */
+    {text:'비상금은 월 생활비 기준 몇 개월분인가요?',weight:10,
      hints:['1개월 미만','1~2개월','3~5개월','6~11개월','1년 이상']},
-    {text:'향후 5년 내 큰 지출 계획(주택 구입, 자녀 교육 등)의 규모는?',weight:15,
+
+    /* ── 예정 대형 지출 ── */
+    {text:'향후 5년 내 큰 지출 계획(주택 구입, 자녀 교육 등)의 규모는?',weight:10,
      hints:['연소득 초과 지출 예정','연소득의 50~100%','연소득의 20~50%','연소득의 20% 미만','없음 또는 이미 준비 완료']},
-    {text:'근로소득 외 현금흐름 자산(배당, 임대료, 연금 등)의 규모는?',weight:10,
+
+    /* ── 현금흐름 자산 ── */
+    {text:'근로소득 외 현금흐름 자산(배당, 임대료, 사업소득 등)의 규모는?',weight:10,
      hints:['없음 (근로소득만)','소득의 10% 미만','소득의 10~30%','소득의 30~50%','자본·임대소득이 근로소득과 유사하거나 초과']},
+
+    /* ── 부양 의무 ── */
     {text:'전적으로 부양해야 할 가족(배우자, 미성년 자녀, 부모)은?',weight:5,
      hints:['4인 이상','3인','2인','1인','없음 (본인만)']}
   ]
@@ -435,8 +467,8 @@ function renderIntro(app){
       </div>
 
       <div style="font-size:13px;color:var(--ink-3);line-height:1.75;margin-bottom:2rem;padding:.75rem 1rem;background:var(--paper-2);border-radius:var(--radius);border:1px solid var(--paper-3)">
-        총 <strong style="color:var(--ink)">14문항</strong> · 약 <strong style="color:var(--ink)">5~7분</strong> 소요<br>
-        앞 7문항은 <strong style="color:var(--ink)">숫자와 사실</strong>로 / 뒤 7문항은 <strong style="color:var(--ink)">심리와 행동</strong>으로 답하세요.<br>
+        총 <strong style="color:var(--ink)">17문항</strong> · 약 <strong style="color:var(--ink)">4~6분</strong> 소요<br>
+        앞 10문항은 <strong style="color:var(--ink)">숫자와 사실</strong>로 / 뒤 7문항은 <strong style="color:var(--ink)">심리와 행동</strong>으로 답하세요.<br>
         <span style="font-size:11px;color:var(--ink-4)">바람직한 답은 없습니다. 솔직하게 답할수록 결과가 정확합니다.</span>
       </div>
 
@@ -449,10 +481,12 @@ function startSurvey(){state.phase='survey';render();}
 function renderSurvey(app){
   const sec=sections[state.sectionIdx];
   const q=sec.questions[state.qIdx];
-  const totalQ=14;
-  const doneQ=state.sectionIdx*7+state.qIdx;
+  const totalQ=17;
+  const aLen=sectionA.questions.length; // 10
+  const doneQ=state.sectionIdx===0 ? state.qIdx : aLen+state.qIdx;
   const progress=Math.round(doneQ/totalQ*100);
   const ans=state.answers[sec.key][state.qIdx];
+  const qPerSec=sec.questions.length;
   app.innerHTML=`
     <div class="progress-section fade-up">
       <div class="progress-meta">
@@ -468,7 +502,7 @@ function renderSurvey(app){
     </div>
     <div class="fade-up-3">
       <div class="q-meta">
-        <span class="q-number">질문 ${state.qIdx+1} / 7</span>
+        <span class="q-number">질문 ${state.qIdx+1} / ${qPerSec}</span>
         <span class="q-weight">배점 ${q.weight}점</span>
       </div>
       <div class="q-text">${q.text}</div>

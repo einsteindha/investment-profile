@@ -172,6 +172,146 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',sans-se
   .section-heading{font-size:17px}
   .q-text{font-size:15px}
 }
+
+/* ── 결과 탭 ── */
+.result-tab-wrap{}
+.result-tabs{display:flex;gap:8px;margin-bottom:2rem}
+.result-tab{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:6px;
+  padding:.65rem .75rem;border-radius:var(--radius);cursor:pointer;
+  font-size:12px;font-family:'Noto Sans KR',sans-serif;font-weight:400;
+  border:1px solid var(--paper-3);background:var(--paper);
+  color:var(--ink-3);transition:all .2s;letter-spacing:.02em;
+}
+.result-tab:hover{border-color:var(--gold);color:var(--ink)}
+.result-tab.active{background:var(--ink);border-color:var(--ink);color:var(--gold-light);font-weight:500}
+.rtab-icon{font-size:14px}
+.result-panel{display:none}
+.result-panel.active{display:block}
+.preview-intro{
+  font-size:13px;color:var(--ink-3);line-height:1.75;
+  padding:.75rem 1rem;background:var(--paper-2);
+  border-radius:var(--radius);border:1px solid var(--paper-3);
+  margin-bottom:1.5rem;
+}
+.preview-intro strong{color:var(--ink);font-weight:500}
+.preview-cta{width:100%;padding:.85rem;font-size:14px;margin-top:1.5rem}
+
+/* ── 인포그래픽 (크림/골드 무드) ── */
+.ig-wrap{
+  border:1px solid var(--paper-3);border-radius:var(--radius-lg);
+  overflow:hidden;background:var(--paper);margin-bottom:1rem;
+}
+.ig-hero{
+  background:var(--ink);padding:2rem 2rem 1.5rem;text-align:center;
+}
+.ig-sub{
+  font-size:10px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;
+  font-weight:500;margin-bottom:.5rem;
+}
+.ig-title{
+  font-family:'DM Serif Display',serif;font-size:22px;color:#fff;line-height:1.35;
+}
+.ig-title span{color:var(--gold-light);font-style:italic}
+.ig-note{
+  margin-top:.85rem;font-size:11.5px;color:rgba(255,255,255,.48);line-height:1.65;
+  border-top:1px solid rgba(255,255,255,.12);padding-top:.85rem;
+}
+.ig-stages{display:flex;gap:0;border-bottom:1px solid var(--paper-3)}
+.ig-stage{
+  flex:1;padding:1.25rem 1rem;border-right:1px solid var(--paper-3);
+  background:var(--paper);
+}
+.ig-stage:last-child{border-right:none}
+.ig-badge{
+  display:inline-block;background:var(--ink);color:var(--gold-light);
+  font-size:9.5px;font-weight:500;border-radius:1px;padding:2px 9px;
+  letter-spacing:.08em;margin-bottom:.6rem;
+}
+.ig-stage-name{
+  font-family:'Noto Serif KR',serif;font-size:14px;font-weight:500;
+  color:var(--ink);margin-bottom:2px;
+}
+.ig-stage-sub{font-size:10px;color:var(--ink-4);margin-bottom:.75rem}
+.ig-icon{font-size:22px;margin:0 0 .65rem}
+.ig-bullets{list-style:none;padding:0;margin-bottom:0}
+.ig-bullets li{
+  font-size:10.5px;color:var(--ink-2);padding:2.5px 0 2.5px 13px;
+  position:relative;line-height:1.45;
+}
+.ig-bullets li::before{
+  content:'✓';position:absolute;left:0;color:var(--teal);font-size:9.5px;font-weight:500;
+}
+.ig-goal{
+  margin-top:.85rem;background:var(--gold-pale);border:1px solid var(--gold-light);
+  border-radius:var(--radius);padding:6px 8px;font-size:10px;
+  color:var(--amber);text-align:center;font-weight:500;line-height:1.4;
+}
+.ig-mid{padding:1.5rem 1.5rem 0}
+.ig-result-title{
+  font-family:'Noto Serif KR',serif;font-size:14px;font-weight:500;
+  color:var(--ink);margin-bottom:1.25rem;text-align:center;
+}
+.ig-result-title span{color:var(--gold)}
+.ig-compare{display:flex;gap:12px;margin-bottom:1.25rem}
+.ig-case{
+  flex:1;border:1px solid var(--paper-3);border-radius:var(--radius-lg);
+  overflow:hidden;background:var(--paper-2);
+}
+.ig-case-header{
+  padding:.6rem .85rem;background:var(--paper-3);
+  font-size:10px;color:var(--ink-3);font-weight:500;letter-spacing:.04em;
+}
+.ig-case-body{padding:.85rem}
+.ig-case-loss{font-size:12px;font-weight:500;margin-bottom:.75rem}
+.ig-case-loss.ok{color:var(--teal)}
+.ig-case-loss.bad{color:var(--red)}
+.ig-chart-wrap{
+  background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius);
+  padding:8px 8px 5px;margin-bottom:.75rem;
+}
+.ig-metrics{display:flex;gap:6px;margin-bottom:.75rem}
+.ig-metric{
+  flex:1;text-align:center;background:var(--paper);
+  border:1px solid var(--paper-3);border-radius:var(--radius);padding:6px 3px;
+}
+.ig-mi{font-size:13px;margin-bottom:2px}
+.ig-ml{font-size:9px;color:var(--ink-4);line-height:1.3}
+.ig-mv{font-size:9.5px;font-weight:500;margin-top:2px;line-height:1.3}
+.ig-mv.ok{color:var(--teal)}
+.ig-mv.bad{color:var(--red)}
+.ig-case-result{
+  text-align:center;font-size:10.5px;font-weight:500;
+  border-radius:var(--radius);padding:6px;
+}
+.ig-case-result.ok{background:#e8f5e9;color:#1b5e20;border:1px solid #c8e6c9}
+.ig-case-result.bad{background:var(--red-light);color:#7f1414;border:1px solid #f5c5c5}
+.ig-footer{
+  padding:1rem 1.5rem;background:var(--paper-2);
+  border-top:1px solid var(--paper-3);
+}
+.ig-rel-note{
+  font-size:11.5px;color:var(--ink-3);line-height:1.7;
+  padding:.65rem .9rem;background:var(--gold-pale);
+  border:1px solid var(--gold-light);border-radius:var(--radius);
+  margin-bottom:.85rem;text-align:center;
+}
+.ig-rel-note strong{color:var(--amber)}
+.ig-tagline{
+  display:flex;align-items:flex-start;gap:.75rem;
+  padding:.85rem 1rem;background:var(--ink);border-radius:var(--radius);
+}
+.ig-tagline-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.ig-tagline-text{font-size:12px;color:rgba(255,255,255,.78);line-height:1.75}
+.ig-tagline-text strong{color:var(--gold-light)}
+@media(max-width:540px){
+  .result-tabs{flex-direction:column}
+  .ig-stages{flex-direction:column}
+  .ig-stage{border-right:none;border-bottom:1px solid var(--paper-3)}
+  .ig-stage:last-child{border-bottom:none}
+  .ig-compare{flex-direction:column}
+}
+
 </style>
 </head>
 <body>
@@ -610,7 +750,7 @@ function renderSurvey(app){
     <div class="fade-up-3">
       <div class="q-meta">
         <span class="q-number">질문 ${state.qIdx+1} / ${qPerSec}</span>
-        <span class="q-weight">배점 ${q.weight}점</span>
+        
       </div>
       <div class="q-text">${q.text}</div>
       <div class="scale-legend"><span>← ${sec.key==='A'?'능력 낮음':'보수적'}</span><span>${sec.key==='A'?'능력 높음':'공격적'} →</span></div>
@@ -723,6 +863,151 @@ function renderResult(app){
   const tacSafePct=tSafe/2;
 
   app.innerHTML=`
+    <div class="result-tab-wrap fade-up">
+      <div class="result-tabs">
+        <button class="result-tab active" id="tab-preview" onclick="switchTab('preview')">
+          <span class="rtab-icon">📄</span> 투자전략 참고자료
+        </button>
+        <button class="result-tab" id="tab-result" onclick="switchTab('result')">
+          <span class="rtab-icon">📊</span> 나의 분석 결과 보기
+        </button>
+      </div>
+
+      <!-- 인포그래픽 패널 -->
+      <div id="panel-preview" class="result-panel active">
+        <div class="preview-intro">
+          아래 자료는 <strong>자산 규모에 따른 투자 전략 변화</strong>를 설명합니다.<br>
+          분석 결과를 보기 전, 먼저 확인해 보세요.
+        </div>
+
+        <div class="ig-wrap">
+          <div class="ig-hero">
+            <div class="ig-sub">Investment Strategy Guide</div>
+            <div class="ig-title">자산이 커질수록 <span>투자 전략도 달라져야</span> 합니다</div>
+            <div class="ig-note">익숙한 전략을 그대로 반복하면, 자산이 커질수록 회복도 어려워지고 인생 전체가 흔들릴 수 있습니다.</div>
+          </div>
+
+          <div class="ig-stages">
+            <div class="ig-stage">
+              <div class="ig-badge">STAGE 1</div>
+              <div class="ig-stage-name">자산 형성기</div>
+              <div class="ig-stage-sub">공격적으로 자산 증식</div>
+              <div class="ig-icon">🌱</div>
+              <ul class="ig-bullets">
+                <li>고위험·고수익 전략 가능</li>
+                <li>레버리지, 테마, 단타도 시도</li>
+                <li>잃어도 회복이 빠름</li>
+              </ul>
+              <div class="ig-goal">수익률 극대화 · 경험 축적</div>
+            </div>
+            <div class="ig-stage">
+              <div class="ig-badge">STAGE 2</div>
+              <div class="ig-stage-name">자산 증식 초기</div>
+              <div class="ig-stage-sub">성장과 안정의 균형</div>
+              <div class="ig-icon">⚖️</div>
+              <ul class="ig-bullets">
+                <li>분산 투자 시작</li>
+                <li>하락에 대한 리스크 관리 필요</li>
+                <li>변동성에 멘탈 흔들리기 시작</li>
+              </ul>
+              <div class="ig-goal">안정적인 성장 · 리스크 관리</div>
+            </div>
+            <div class="ig-stage">
+              <div class="ig-badge">STAGE 3</div>
+              <div class="ig-stage-name">자산 증식 성숙기</div>
+              <div class="ig-stage-sub">보존이 핵심, 성장 보조</div>
+              <div class="ig-icon">🔒</div>
+              <ul class="ig-bullets">
+                <li>원금 보존이 최우선</li>
+                <li>큰 손실은 인생 계획 전체에 영향</li>
+                <li>지속 가능한 현금흐름 중요</li>
+              </ul>
+              <div class="ig-goal">자산 보존 · 복리 유지 · 현금흐름</div>
+            </div>
+          </div>
+
+          <div class="ig-mid">
+            <div class="ig-result-title">같은 전략을 그대로 유지하면 생기는 <span>결과 차이</span></div>
+            <div class="ig-compare">
+              <div class="ig-case">
+                <div class="ig-case-header">예시 1 — 자산 형성기 (3,000만원)</div>
+                <div class="ig-case-body">
+                  <div class="ig-case-loss ok">-50% 손실 → 1,500만원</div>
+                  <div class="ig-chart-wrap">
+                    <svg viewBox="0 0 280 72" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:66px;display:block">
+                      <defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2a7c6f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                      <text x="4" y="13" font-size="9.5" fill="#7a776f" font-family="Noto Sans KR,sans-serif">3,000만원</text>
+                      <text x="4" y="51" font-size="9.5" fill="#943030" font-family="Noto Sans KR,sans-serif">1,500만원</text>
+                      <text x="190" y="13" font-size="9.5" fill="#2a7c6f" font-family="Noto Sans KR,sans-serif">회복 가능!</text>
+                      <line x1="212" y1="16" x2="220" y2="24" stroke="rgba(42,124,111,0.35)" stroke-width="0.8" stroke-dasharray="3,2"/>
+                      <polyline points="12,20 105,44 218,22" fill="none" stroke="#2a7c6f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#a1)"/>
+                      <circle cx="12" cy="20" r="3" fill="#2a7c6f"/>
+                      <circle cx="105" cy="44" r="3" fill="#943030" opacity=".7"/>
+                      <line x1="12" y1="57" x2="224" y2="57" stroke="#e8e4db" stroke-width="0.8"/>
+                      <text x="12" y="68" font-size="8.5" fill="#b5b2a9" font-family="Noto Sans KR,sans-serif">투자 시작</text>
+                      <text x="82" y="68" font-size="8.5" fill="#b5b2a9" font-family="Noto Sans KR,sans-serif">손실 발생</text>
+                      <text x="178" y="68" font-size="8.5" fill="#b5b2a9" font-family="Noto Sans KR,sans-serif">1~2년 후</text>
+                    </svg>
+                  </div>
+                  <div class="ig-metrics">
+                    <div class="ig-metric"><div class="ig-mi">⏰</div><div class="ig-ml">회복 시간</div><div class="ig-mv ok">1~2년</div></div>
+                    <div class="ig-metric"><div class="ig-mi">🧠</div><div class="ig-ml">심리 충격</div><div class="ig-mv ok">상대적 적음</div></div>
+                    <div class="ig-metric"><div class="ig-mi">🎯</div><div class="ig-ml">인생 계획</div><div class="ig-mv ok">영향 제한적</div></div>
+                  </div>
+                  <div class="ig-case-result ok">다시 일어나기 쉽다</div>
+                </div>
+              </div>
+              <div class="ig-case">
+                <div class="ig-case-header">예시 2 — 자산 증식 성숙기 (5억원)</div>
+                <div class="ig-case-body">
+                  <div class="ig-case-loss bad">-50% 손실 → 2.5억원</div>
+                  <div class="ig-chart-wrap">
+                    <svg viewBox="0 0 280 72" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:66px;display:block">
+                      <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#943030" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+                      <text x="4" y="13" font-size="9.5" fill="#7a776f" font-family="Noto Sans KR,sans-serif">5억원</text>
+                      <text x="4" y="57" font-size="9.5" fill="#943030" font-family="Noto Sans KR,sans-serif">2.5억원</text>
+                      <text x="176" y="13" font-size="9.5" fill="#943030" font-family="Noto Sans KR,sans-serif">인생이</text>
+                      <text x="160" y="24" font-size="9.5" fill="#943030" font-family="Noto Sans KR,sans-serif">흔들릴 수 있다!</text>
+                      <line x1="198" y1="27" x2="212" y2="46" stroke="rgba(148,48,48,0.3)" stroke-width="0.8" stroke-dasharray="3,2"/>
+                      <polyline points="12,20 105,48 218,54" fill="none" stroke="#943030" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#a2)"/>
+                      <circle cx="12" cy="20" r="3" fill="#b5b2a9"/>
+                      <circle cx="105" cy="48" r="3" fill="#943030" opacity=".7"/>
+                      <line x1="12" y1="57" x2="224" y2="57" stroke="#e8e4db" stroke-width="0.8"/>
+                      <text x="12" y="68" font-size="8.5" fill="#b5b2a9" font-family="Noto Sans KR,sans-serif">투자 시작</text>
+                      <text x="82" y="68" font-size="8.5" fill="#b5b2a9" font-family="Noto Sans KR,sans-serif">손실 발생</text>
+                      <text x="178" y="68" font-size="8.5" fill="#b5b2a9" font-family="Noto Sans KR,sans-serif">5년 이상</text>
+                    </svg>
+                  </div>
+                  <div class="ig-metrics">
+                    <div class="ig-metric"><div class="ig-mi">⏰</div><div class="ig-ml">회복 시간</div><div class="ig-mv bad">5년 이상</div></div>
+                    <div class="ig-metric"><div class="ig-mi">🧠</div><div class="ig-ml">심리 충격</div><div class="ig-mv bad">불안·후회·두려움</div></div>
+                    <div class="ig-metric"><div class="ig-mi">⚠️</div><div class="ig-ml">인생 계획</div><div class="ig-mv bad">모든 계획에 영향</div></div>
+                  </div>
+                  <div class="ig-case-result bad">회복도 어렵고, 인생 전체가 흔들린다</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ig-footer">
+            <div class="ig-rel-note">
+              위 금액은 <strong>예시</strong>입니다. 단계 진입 시점은 소득·지출·가족 상황·목표에 따라 사람마다 다릅니다.<br>
+              <strong>절대적인 숫자보다 지금 나의 자산 단계가 어디인지</strong>가 더 중요합니다.
+            </div>
+            <div class="ig-tagline">
+              <div class="ig-tagline-icon">⭐</div>
+              <div class="ig-tagline-text">투자의 목적은 <strong>'더 많이 버는 것'</strong>이 아니라 <strong>'잃지 않고, 오래, 꾸준히 가는 것'</strong>입니다.<br>자산이 커질수록 전략을 업그레이드하는 사람이 진짜 부를 지켜냅니다.</div>
+            </div>
+          </div>
+        </div><!-- /ig-wrap -->
+
+        <button class="btn btn-primary preview-cta" onclick="switchTab('result')">
+          나의 분석 결과 보기 →
+        </button>
+      </div><!-- /panel-preview -->
+
+      <!-- 결과 패널 -->
+      <div id="panel-result" class="result-panel">
     <div class="result-top fade-up">
       <div class="result-type-label">2차원 투자성향 분석 결과</div>
       <div class="result-name">${p.name}</div>
@@ -953,7 +1238,17 @@ function renderResult(app){
       본 분석은 Kitces(2012) 2차원 위험 분리 모델 및 금융투자협회 표준투자권유준칙을 참고하여 설계되었습니다.<br>
       재무 상담의 참고 자료이며, 구체적인 투자 결정은 반드시 전문 재무설계사와 상담하시기 바랍니다.
     </div>
-    <button class="btn btn-ghost" onclick="restart()">↺ 다시 시작하기</button>`;
+    <button class="btn btn-ghost" onclick="restart()">↺ 다시 시작하기</button>
+      </div><!-- /panel-result -->
+    </div><!-- /result-tab-wrap -->
+  `;
+}
+
+function switchTab(tab){
+  document.querySelectorAll('.result-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.result-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
 }
 
 function showRP(id,btn){

@@ -438,8 +438,8 @@ const P={
    returns:{low:2,high:4,note:'예금·채권 중심, 물가 상승률 수준'},
    desc:'최상의 재무 능력을 보유하고 있지만 심리적으로 매우 보수적입니다. 자산을 지키는 것이 최우선이며, 능력에 비해 낮은 수익을 추구합니다. 인플레이션에 의한 실질 자산 침식이 가장 큰 리스크입니다.',
    strategic:{risky:20,safe:80},
-   tactical:{risky:5,safe:5},
-   tacticalNote:'시장 급락 시 위험자산 +5%p 확대, 과열 시 -5%p 축소',
+   tactical:{risky:10,safe:10},
+   tacticalNote:'시장 급락 시 위험자산 최대 30%까지 확대, 과열 시 최소 10%로 축소 — ±10%p',
    advice:'재무 능력은 충분하나 성향이 지나치게 보수적입니다. 금(Gold) ETF와 물가연동채로 인플레이션을 방어하고, 단계적 투자 교육을 통해 성향을 조금씩 넓혀가는 것을 권장합니다.',
    checks:['금(Gold) ETF 15~20%로 실질 구매력 방어','물가연동국채(KTB) 편입 검토','연금저축·IRP 세액공제 한도 우선 활용']},
   '4-1':{name:'안전 자산가',
@@ -478,9 +478,9 @@ const P={
   '5-2':{name:'균형 자산가',
    returns:{low:4,high:6,note:'채권·배당 인컴 + 우량주 성장'},
    desc:'최상의 재무 능력과 안정추구 성향의 조합입니다. 은행 이자보다 높은 수익을 원하지만 큰 변동성은 피합니다. 인컴 중심의 안정적 성장 전략이 적합합니다.',
-   strategic:{risky:35,safe:65},
-   tactical:{risky:10,safe:10},
-   tacticalNote:'강세장·금리 하락 시 위험자산 +10%p, 약세장 시 -10%p',
+   strategic:{risky:40,safe:60},
+   tactical:{risky:15,safe:15},
+   tacticalNote:'강세장·금리 하락 시 위험자산 최대 55%, 약세장 시 최소 25% — 재무 능력 최상, ±15%p',
    advice:'재무 여력이 충분합니다. 고배당 ETF와 채권으로 인컴을 확보하고, 글로벌 ETF로 인플레이션을 방어하는 구조를 만드세요.',
    checks:['월지급식 배당 ETF로 생활비 보조 구조 설계','미국 단기 국채 ETF로 달러 헤지','부동산 비중이 높다면 주택연금 시뮬레이션 검토']},
   '4-2':{name:'안정 성장형',
@@ -494,8 +494,8 @@ const P={
   '3-2':{name:'표준 중산층',
    returns:{low:4,high:6,note:'TDF·혼합형 펀드 기준'},
    desc:'재무 능력과 성향이 균형 잡힌 일반적인 중산층 투자자입니다. 시장 평균보다 약간 보수적인 수준을 목표로 하며, TDF 같은 단순한 전략이 잘 맞습니다.',
-   strategic:{risky:40,safe:60},
-   tactical:{risky:10,safe:10},
+   strategic:{risky:35,safe:65},
+   tactical:{risky:5,safe:5},
    tacticalNote:'경기 사이클에 따라 ±10%p 조정, 리밸런싱 연 1회',
    advice:'TDF(타겟데이트펀드) 또는 글로벌 자산 배분 펀드 1~2개로 단순화를 권장합니다. 복잡한 전략보다 꾸준한 납입이 장기적으로 더 큰 차이를 만듭니다.',
    checks:['TDF 또는 밸런스드 펀드 1개 핵심 구성','IRP·연금저축 한도 먼저 채우기','연 1회 포트폴리오 점검으로 충분']},
@@ -519,15 +519,15 @@ const P={
   '5-3':{name:'균형 성장가',
    returns:{low:5,high:8,note:'글로벌 주식 ETF 50% + 채권·배당'},
    desc:'탄탄한 재무 능력과 균형 잡힌 위험 성향의 이상적인 조합입니다. 주식과 채권을 균형 있게 배분하며 시장 평균 수익률을 목표로 합니다. 금융투자협회 준칙 기준 3등급 위험중립형에 해당합니다.',
-   strategic:{risky:50,safe:50},
+   strategic:{risky:60,safe:40},
    tactical:{risky:15,safe:15},
-   tacticalNote:'강세장 위험자산 최대 65%, 약세장 최소 35% — ±15%p',
+   tacticalNote:'강세장 위험자산 최대 75%, 약세장 최소 45% — ±15%p',
    advice:'Core-Satellite 전략이 적합합니다. 글로벌 지수 ETF를 핵심으로 하고, 배당주와 채권으로 인컴을 보완하세요. 재무 능력이 충분하므로 장기 복리 효과를 최대화하는 것이 목표입니다.',
    checks:['글로벌 지수 ETF(S&P500·MSCI World) 핵심 50%','연 2회 리밸런싱으로 목표 비중 유지','세액공제 계좌 한도 최대 활용']},
   '4-3':{name:'균형 투자자',
    returns:{low:5,high:8,note:'주식·채권 5:4, 국민연금형 배분'},
    desc:'안정적인 재무 기반에서 시장 평균 수익률을 추구합니다. 변동성을 이해하고 장기 투자를 지향하는 성숙한 투자자입니다.',
-   strategic:{risky:50,safe:50},
+   strategic:{risky:55,safe:45},
    tactical:{risky:10,safe:10},
    tacticalNote:'주식 밸류에이션(P/E) 과열 시 -10%p, VIX 급등 후 +10%p',
    advice:'6:4 포트폴리오를 기반으로 운용하세요. 시장 하락 시 패닉 셀링을 하지 않는 것이 장기 성과를 결정짓는 가장 중요한 요소입니다.',
@@ -561,8 +561,8 @@ const P={
    returns:{low:7,high:11,note:'글로벌 주식 ETF 65% + 성장 섹터'},
    desc:'탄탄한 재무 능력과 적극적인 성향의 이상적인 조합입니다. 주식 중심 포트폴리오로 장기 성장을 추구하며, 시장 하락을 기회로 활용할 수 있습니다.',
    strategic:{risky:65,safe:35},
-   tactical:{risky:15,safe:15},
-   tacticalNote:'강세장 최대 80%, 약세장 최소 50% — 하락장 추가 매수 재원 확보',
+   tactical:{risky:20,safe:20},
+   tacticalNote:'강세장 최대 85%, 약세장 최소 45% — 재무 능력 최상, ±20%p 적극 활용',
    advice:'높은 주식 비중이 장기적으로 최적입니다. 섹터 ETF와 개별 성장주는 전체의 20% 이내로 제한하고, 정기 리밸런싱을 신뢰하며 장기 보유하세요.',
    checks:['글로벌 ETF 핵심 + 성장 섹터 위성 전략','연 2회 리밸런싱으로 비중 유지','레버리지 상품은 전체의 10% 이내로 엄격 제한']},
   '4-4':{name:'적극 투자자',
@@ -602,8 +602,8 @@ const P={
    returns:{low:8,high:15,note:'성장주·레버리지 포함, 변동성 높음'},
    desc:'최상의 재무 능력과 공격적 성향이 완벽히 일치하는 이상적인 고성장 투자자입니다. 글로벌 성장 섹터와 레버리지 전략을 적극 활용할 수 있습니다. 금융투자협회 준칙 기준 1등급(공격투자형)에 해당합니다.',
    strategic:{risky:80,safe:20},
-   tactical:{risky:15,safe:15},
-   tacticalNote:'강세장 최대 95%, 약세장 최소 65% — 레버리지 포함 시 엄격 관리',
+   tactical:{risky:15,safe:15,riskyDown:20},
+   tacticalNote:'강세장 최대 95%(+15%p), 약세장 최소 60%(−20%p) — 비대칭 전술 범위',
    advice:'능력과 성향이 완벽히 일치합니다. 분산 투자를 전제로 섹터 집중을 허용하지만, 레버리지와 파생 상품은 전체의 20% 이내로 엄격히 통제하세요.',
    checks:['글로벌 분산을 전제로 섹터·테마 집중 허용','레버리지 상품 20% 상한 엄수','연간 세전 수익률 기록 및 벤치마크 대비 평가']},
   '4-5':{name:'공격적 성장가',
@@ -611,7 +611,7 @@ const P={
    desc:'안정적인 재무 기반에서 최고의 수익을 추구합니다. 공격적 성향이 재무 능력을 약간 앞서 있어 일부 절제가 필요합니다.',
    strategic:{risky:70,safe:30},
    tactical:{risky:15,safe:15},
-   tacticalNote:'방어형 30%는 하락장 추가 매수 재원 — 전술적 확대 시 우선 활용',
+   tacticalNote:'방어형 30%는 하락장 매수 재원 — 전술 확대 시 최대 85%, 축소 시 최소 55% (±15%p)',
    advice:'공격적 성향이 재무 능력을 한 단계 초과합니다. 고위험 상품 비중을 70%로 절제하고, 나머지 30%는 방어형으로 유지하여 하락장 매수 재원으로 활용하세요.',
    checks:['방어형 자산 30%는 하락장 추가 매수 재원','개별 종목 집중도 관리 (단일 종목 10% 이내)','레버리지는 전체 포트폴리오의 15% 이내']},
   '3-5':{name:'공격 희망형 ⚠',
@@ -855,11 +855,13 @@ function renderResult(app){
   const safe=p.strategic.safe;
   const tRisky=p.tactical.risky;
   const tSafe=p.tactical.safe;
+  const tRiskyDown=p.tactical.riskyDown||tRisky;
   const riskyColor='#943030';
   const safeColor='#2a7c6f';
 
   /* 전술적 바 너비 계산 (50%가 0선) */
   const tacRiskyPct=tRisky/2; /* 전체 바 중 % */
+  const tacRiskyDownPct=tRiskyDown/2;
   const tacSafePct=tSafe/2;
 
   app.innerHTML=`
@@ -1104,19 +1106,19 @@ function renderResult(app){
             <div class="tactical-center-line"></div>
             <div class="tactical-base-mark"></div>
             <div class="tactical-range-bar tactical-plus-bar" style="width:${tacRiskyPct}%"></div>
-            <div class="tactical-range-bar tactical-minus-bar" style="width:${tacRiskyPct}%"></div>
+            <div class="tactical-range-bar tactical-minus-bar" style="width:${tacRiskyDownPct}%"></div>
           </div>
-          <div class="tactical-nums" style="color:${riskyColor}">−${tRisky}% / +${tRisky}%</div>
+          <div class="tactical-nums" style="color:${riskyColor}">−${tRiskyDown}% / +${tRisky}%</div>
         </div>
         <div class="tactical-row" style="margin-bottom:.5rem">
           <div class="tactical-label" style="color:${safeColor};font-size:12px;font-weight:500">안전자산</div>
           <div class="tactical-bar-wrap">
             <div class="tactical-center-line"></div>
             <div class="tactical-base-mark"></div>
-            <div class="tactical-range-bar tactical-plus-bar" style="width:${tacSafePct}%;background:${safeColor};opacity:.45"></div>
+            <div class="tactical-range-bar tactical-plus-bar" style="width:${tacRiskyDownPct}%;background:${safeColor};opacity:.45"></div>
             <div class="tactical-range-bar tactical-minus-bar" style="width:${tacSafePct}%;background:${safeColor};opacity:.35"></div>
           </div>
-          <div class="tactical-nums" style="color:${safeColor}">−${tSafe}% / +${tSafe}%</div>
+          <div class="tactical-nums" style="color:${safeColor}">−${tSafe}% / +${tRiskyDown}%</div>
         </div>` : `<div style="font-size:13px;color:var(--ink-3);padding:.25rem 0">전술적 조정 없음 — 현재 단계에서는 목표 비중 유지</div>`}
         <div style="margin-top:.85rem;padding-top:.65rem;border-top:1px solid var(--paper-3)">
           <div style="font-size:12px;color:var(--ink-2);line-height:1.65">${p.tacticalNote}</div>

@@ -386,6 +386,13 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',sans-se
   #print-page1{page-break-after:always;display:flex;flex-direction:column;min-height:238mm}
   #returns-section{flex:1;display:flex;flex-direction:column;margin-bottom:0!important}
   #returns-box{flex:1;padding:1rem 1.1rem!important;display:flex;flex-direction:column;justify-content:space-between}
+  /* 2페이지 — 전문가 조언·체크리스트 */
+  .advisory{padding:.5rem .75rem;margin-bottom:.5rem}
+  .advisory .adv-label{font-size:9px}
+  .advisory .adv-text{font-size:10px;line-height:1.5}
+  .checklist{margin-bottom:.65rem}
+  .checklist li{font-size:10px;padding:.3rem 0;gap:.5rem}
+  .check-icon{width:13px;height:13px;flex-shrink:0}
   /* 2페이지 — 부동산 섹션 */
   .re-tabs{display:none!important}
   #re-mid{display:none!important}
@@ -1260,19 +1267,19 @@ function renderResult(app){
     </div>
     </div><!-- /print-page1 -->
 
-    <div class="advisory fade-up-3 print-hide">
+    <div class="advisory fade-up-3">
       <div class="adv-label">전문가 조언</div>
       <div class="adv-text">${p.advice}</div>
     </div>
 
-    <div class="fade-up-3 print-hide">
+    <div class="fade-up-3">
       <div class="block-label">포트폴리오 체크리스트</div>
       <ul class="checklist">
         ${p.checks.map(c=>`<li><span class="check-icon"></span>${c}</li>`).join('')}
       </ul>
     </div>
 
-    <hr class="section-div print-hide">
+    <hr class="section-div">
 
     <div class="re-section fade-up-3">
       <div class="block-label">한국 부동산 비중별 추가 안내</div>

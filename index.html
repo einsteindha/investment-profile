@@ -312,15 +312,59 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',sans-se
   .ig-compare{flex-direction:column}
 }
 
+#print-wm{display:none}
+@media print{
+  @page{margin:10mm;size:A4}
+  #print-wm{display:block!important;position:fixed;top:0;left:0;width:100%;height:100%;z-index:999999;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='360'%3E%3Ctext x='260' y='180' font-family='Georgia,serif' font-size='58' fill='rgba(196,147,63,0.08)' text-anchor='middle' dominant-baseline='middle' transform='rotate(-40,260,180)'%3EIdentiFi%3C/text%3E%3C/svg%3E");background-repeat:repeat;background-size:520px 360px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:10px}
+  .page{padding:0 0 0}
+  .site-header{position:static!important;border-bottom:1px solid #ccc;padding:.35rem .85rem;margin-bottom:.4rem}
+  .site-sub{display:none}
+  .result-tabs,.print-hide,.progress-section{display:none!important}
+  #panel-preview{display:none!important}
+  #panel-result{display:block!important}
+  .result-tab-wrap,.fade-up,.fade-up-2,.fade-up-3{animation:none}
+  .result-top{padding-bottom:.85rem;margin-bottom:.85rem}
+  .result-name{font-size:26px}
+  .result-desc{font-size:13px}
+  .score-row{gap:6px;margin-bottom:.75rem}
+  .score-card{padding:.6rem}
+  .sc-value{font-size:22px}
+  .section-div{margin:.5rem 0}
+  .matrix-section{margin-bottom:.6rem}
+  .matrix-table{font-size:10px}
+  .alloc-section,.tactical-section{margin-bottom:.65rem}
+  .alloc-body{padding:.6rem .85rem}
+  .tactical-body{padding:.6rem .85rem}
+  .gap-warning,.advisory.fade-up-2{margin-bottom:.6rem}
+  .result-badge{font-size:10px;padding:.2rem .6rem}
+  .re-tabs{display:none!important}
+  #re-mid{display:none!important}
+  #re-high,#re-low{display:block!important}
+  .re-section{margin-top:1.25rem;padding-top:1rem;border-top:1px solid #ddd}
+  .re-section .block-label{margin-bottom:.5rem}
+  .re-intro{font-size:11px;padding:.5rem .75rem;margin-bottom:.75rem}
+  .re-card{margin-bottom:.5rem}
+  .re-card-head{padding:.5rem .75rem}
+  .re-card-body{padding:.5rem .75rem}
+  .re-card-body p{font-size:11px}
+  .re-highlight{font-size:10px;padding:.4rem .6rem}
+  .re-source{font-size:9px;margin-top:.5rem;padding-top:.5rem}
+  .result-footer{margin-top:.75rem;padding-top:.75rem;font-size:9px;border-top:1px solid #ddd}
+}
+
 </style>
 </head>
 <body>
+<div id="print-wm"></div>
 <div class="page">
   <header class="site-header">
     <div>
       <div class="site-logo">Investment <span>Profile</span></div>
       <div class="site-sub">2차원 투자성향 분석 도구</div>
     </div>
+    <div class="site-logo" style="font-size:18px;opacity:.5;letter-spacing:.02em">Identi<span>Fi</span></div>
   </header>
   <div id="app"></div>
 </div>
@@ -533,12 +577,12 @@ const P={
    advice:'6:4 포트폴리오를 기반으로 운용하세요. 시장 하락 시 패닉 셀링을 하지 않는 것이 장기 성과를 결정짓는 가장 중요한 요소입니다.',
    checks:['자동 적립식으로 감정 배제한 투자 시스템','하락장 대응 기준 사전 작성 (예: -20% 추가 매수)','은퇴 시점 역산하여 TDF 전환 타이밍 설계']},
   '3-3':{name:'위험중립형 투자자',
-   returns:{low:5,high:7,note:'주식 5:채권 4 혼합'},
+   returns:{low:5,high:7,note:'주식·채권 균형(50:50) 혼합'},
    desc:'재무 능력과 성향 모두 중간 수준의 균형 잡힌 투자자입니다. 금융투자협회 표준투자권유준칙 기준 3등급(위험중립형)에 정확히 해당합니다.',
    strategic:{risky:50,safe:50},
    tactical:{risky:10,safe:10},
    tacticalNote:'경기 확장기 위험자산 +10%p, 침체 신호 시 -10%p',
-   advice:'표준적인 5:4 혼합 포트폴리오가 가장 적합합니다. 지금 당장의 수익보다 10년·20년 복리 효과에 집중하세요.',
+   advice:'위험자산과 안전자산을 50:50으로 나누는 균형 포트폴리오가 가장 적합합니다. 지금 당장의 수익보다 10년·20년 복리 효과에 집중하세요.',
    checks:['국내외 혼합형 인덱스 펀드 핵심 보유','IRP+연금저축 연간 900만원 세액공제 최대 활용','비상금 6개월분 별도 유지']},
   '2-3':{name:'성장 지향가',
    returns:{low:4,high:7,note:'주식 ETF 55%, 재무 기반 제약 반영'},
@@ -1010,6 +1054,9 @@ function renderResult(app){
 
       <!-- 결과 패널 -->
       <div id="panel-result" class="result-panel">
+    <div class="print-hide" style="display:flex;justify-content:flex-end;margin-bottom:1.25rem">
+      <button onclick="window.print()" style="display:inline-flex;align-items:center;gap:.4rem;padding:.6rem 1.35rem;border-radius:2px;cursor:pointer;font-size:13px;font-family:'Noto Sans KR',sans-serif;font-weight:400;background:var(--ink);border:1px solid var(--ink);color:var(--gold-light);transition:all .18s;letter-spacing:.02em" onmouseover="this.style.background='var(--ink-2)'" onmouseout="this.style.background='var(--ink)'">🖨 인쇄 / 저장</button>
+    </div>
     <div class="result-top fade-up">
       <div class="result-type-label">2차원 투자성향 분석 결과</div>
       <div class="result-name">${p.name}</div>
@@ -1154,19 +1201,19 @@ function renderResult(app){
       </div>
     </div>
 
-    <div class="advisory fade-up-3">
+    <div class="advisory fade-up-3 print-hide">
       <div class="adv-label">전문가 조언</div>
       <div class="adv-text">${p.advice}</div>
     </div>
 
-    <div class="fade-up-3">
+    <div class="fade-up-3 print-hide">
       <div class="block-label">포트폴리오 체크리스트</div>
       <ul class="checklist">
         ${p.checks.map(c=>`<li><span class="check-icon"></span>${c}</li>`).join('')}
       </ul>
     </div>
 
-    <hr class="section-div">
+    <hr class="section-div print-hide">
 
     <div class="re-section fade-up-3">
       <div class="block-label">한국 부동산 비중별 추가 안내</div>
@@ -1225,7 +1272,7 @@ function renderResult(app){
           <div class="re-card-head" style="background:#d4e2f5"><div class="re-card-icon" style="background:#b5d4f4;color:#0c447c">📈</div><div><div class="re-card-title">부동산 대체 투자 편입</div><div class="re-card-sub">리츠·인프라 펀드</div></div></div>
           <div class="re-card-body">
             <p>직접 부동산 없이 리츠(REITs)·인프라 펀드로 임대 수익과 자산 상승의 과실을 누릴 수 있습니다.</p>
-            <div class="re-highlight">권장: 위험자산 60% : 안전자산 40% 구조에서 리츠 20% 포함</div>
+            <div class="re-highlight">권장: 위험자산 60% : 안전자산 40% 구조에서 리츠 15% 이내 포함</div>
           </div>
         </div>
         <div class="re-card">
@@ -1240,7 +1287,7 @@ function renderResult(app){
       본 분석은 Kitces(2012) 2차원 위험 분리 모델 및 금융투자협회 표준투자권유준칙을 참고하여 설계되었습니다.<br>
       재무 상담의 참고 자료이며, 구체적인 투자 결정은 반드시 전문 재무설계사와 상담하시기 바랍니다.
     </div>
-    <button class="btn btn-ghost" onclick="restart()">↺ 다시 시작하기</button>
+    <button class="btn btn-ghost print-hide" onclick="restart()">↺ 다시 시작하기</button>
       </div><!-- /panel-result -->
     </div><!-- /result-tab-wrap -->
   `;

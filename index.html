@@ -99,7 +99,7 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',sans-se
 .alloc-big-fill{height:14px;border-radius:1px;transition:width .8s cubic-bezier(.4,0,.2,1)}
 .alloc-big-pct{font-size:14px;font-weight:500;color:var(--ink);width:36px;text-align:right}
 
-.tactical-section{background:var(--paper);border:1px solid var(--paper-3);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:2rem}
+.tactical-section{background:var(--paper-2);border:1px solid var(--paper-3);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:2rem}
 .tactical-header{padding:.75rem 1rem;border-bottom:1px solid var(--paper-3);display:flex;align-items:baseline;justify-content:space-between}
 .tactical-title{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
 .tactical-body{padding:.85rem 1rem}
@@ -380,7 +380,8 @@ body{background:var(--paper);color:var(--ink);font-family:'Noto Sans KR',sans-se
   .tactical-bar-wrap{height:20px}
   .tactical-range-bar{height:7px;top:6px}
   .tactical-nums{font-size:9px}
-  .tactical-legend{margin-top:.4rem;padding-top:.35rem}
+  .alloc-legend{flex-direction:column!important;gap:.3rem!important}
+  .tactical-legend{margin-top:.4rem;padding-top:.35rem;flex-direction:column;gap:3px}
   .t-leg-item{font-size:8.5px;gap:3px}
   /* 장기기대수익률 */
   #print-page1{page-break-after:always;display:flex;flex-direction:column;min-height:238mm}
@@ -1188,7 +1189,7 @@ function renderResult(app){
             </div>
             <div class="alloc-big-pct">${safe}%</div>
           </div>
-          <div style="margin-top:.85rem;padding-top:.65rem;border-top:1px solid var(--paper-3);display:flex;gap:1.5rem">
+          <div class="alloc-legend" style="margin-top:.85rem;padding-top:.65rem;border-top:1px solid var(--paper-3);display:flex;gap:1.5rem">
             <div style="font-size:11px;color:var(--ink-4)">
               <span style="display:inline-block;width:8px;height:8px;background:${riskyColor};border-radius:1px;margin-right:4px;opacity:.7;vertical-align:middle"></span>
               위험자산: 주식·ETF·성장주·리츠·대체자산
@@ -1230,7 +1231,7 @@ function renderResult(app){
           </div>
           <div class="tactical-nums" style="color:${safeColor}">−${tSafe}% / +${tRiskyDown}%</div>
         </div>` : `<div style="font-size:13px;color:var(--ink-3);padding:.25rem 0">전술적 조정 없음 — 현재 단계에서는 목표 비중 유지</div>`}
-        <div style="margin-top:.85rem;padding-top:.65rem;border-top:1px solid var(--paper-3)">
+        <div class="print-hide" style="margin-top:.85rem;padding-top:.65rem;border-top:1px solid var(--paper-3)">
           <div style="font-size:12px;color:var(--ink-2);line-height:1.65">${p.tacticalNote}</div>
         </div>
         ${tRisky>0?`<div class="tactical-legend">

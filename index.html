@@ -1338,7 +1338,10 @@ function renderResult(app){
       본 분석은 Kitces(2012) 2차원 위험 분리 모델 및 금융투자협회 표준투자권유준칙을 참고하여 설계되었습니다.<br>
       재무 상담의 참고 자료이며, 구체적인 투자 결정은 반드시 전문 재무설계사와 상담하시기 바랍니다.
     </div>
-    <button class="btn btn-ghost print-hide" onclick="restart()">↺ 다시 시작하기</button>
+    <div class="print-hide" style="display:flex;gap:8px;margin-top:.75rem">
+      <button class="btn btn-ghost" style="flex:1" onclick="restart()">↺ 다시 시작하기</button>
+      <button class="btn btn-primary" style="flex:1" onclick="window.print()">🖨 인쇄 / 저장</button>
+    </div>
       </div><!-- /panel-result -->
     </div><!-- /result-tab-wrap -->
   `;
